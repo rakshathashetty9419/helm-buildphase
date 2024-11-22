@@ -15,10 +15,10 @@ jobs:
 
       - name: Get current branch name
         id: get_branch
-        run: echo "##[set-output name=branch;]${GITHUB_REF##*/}"
+        run: echo "branch=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       - name: Print branch name
-        run: echo "Branch: ${{ steps.get_branch.outputs.branch }}"
+        run: echo "Branch: ${{ env.branch }}"
 
       #- name: Set up Helm
       #  uses: azure/setup-helm@v1
