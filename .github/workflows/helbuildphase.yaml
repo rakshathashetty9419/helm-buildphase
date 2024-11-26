@@ -17,8 +17,8 @@ jobs:
         id: get_branch
         run: echo "branch=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
-      - name: Print branch name
-        run: "echo Branch: ${{ env.branch }}"
+      #- name: Print branch name
+      #  run: "echo Branch: ${{ env.branch }}"
 
       #- name: Set up Helm
       #  uses: azure/setup-helm@v1
