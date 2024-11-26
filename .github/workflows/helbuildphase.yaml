@@ -1,9 +1,6 @@
 name: Helm CI Workflow
 
-on:
-  push:
-    branches:
-      - '*'
+on: [push]
 
 jobs:
   build:
