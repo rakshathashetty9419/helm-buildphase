@@ -34,6 +34,9 @@ jobs:
         uses: azure/setup-kubectl@v3
         with:
           version: 'latest'
+          
+      - name: Create service account and role binding
+        run: kubectl apply -f service-account.yaml
   
       - name: Deploy to Kubernetes
         run: kubectl apply -f deployment.yaml
