@@ -39,7 +39,7 @@ jobs:
         run: kubectl apply -f service-account.yaml
   
       - name: Deploy to Kubernetes
-        run: kubectl apply -f deployment.yaml
+        run: kubectl apply -f hello-world.yaml
 
       #- name: Package Helm chart
       #  run: helm package ./path/to/chart
