@@ -39,6 +39,10 @@ jobs:
         with:
           version: 'latest'
           
+      - name: Print environment variables
+        run: |
+          echo "SERVICEACCOUNT_NAME=${{ secrets.SERVICEACCOUNT_NAME }}"
+          
       #Code to use variables defined under Settings >> Environment    
       - name: Replace placeholders in YAML
         env:
