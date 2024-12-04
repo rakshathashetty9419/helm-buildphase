@@ -45,11 +45,18 @@ jobs:
           echo "SERVICEACCOUNT_NAME=${{ secrets.SERVICEACCOUNT_NAME }}"
           
       #Code to use variables defined under Settings >> Environment    
-      - name: Replace placeholders in YAML
+      - name: Replace placeholders in service-account YAML
         env:
           SERVICEACCOUNT_NAME: ${{ secrets.SERVICEACCOUNT_NAME }}
         run: |
           envsubst < service-account.yaml > service-account-processed.yaml
+          
+      #Code to use variables defined under Settings >> Environment    
+      - name: Replace placeholders in hello-world YAML
+        env:
+          SERVICEACCOUNT_NAME: ${{ secrets.SERVICEACCOUNT_NAME }}
+        run: |
+          envsubst < hello-world.yaml > hello-world-processed.yaml
           
       - name: Debug Print processed YAML
         run: cat service-account-processed.yaml
@@ -58,7 +65,7 @@ jobs:
         run: kubectl apply -f service-account-processed.yaml
   
       - name: Deploy to Kubernetes
-        run: kubectl apply -f hello-world.yaml
+        run: kubectl apply -f hello-world-processed.yaml
 
       - name: Display all pods
         run: kubectl get pods --all-namespaces
