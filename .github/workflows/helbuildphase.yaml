@@ -39,6 +39,14 @@ jobs:
         with:
           version: 'latest'
           
+      #Code to use variables defined under Settings >> Environment    
+      - name: Replace placeholders in YAML
+        env:
+          SERVICEACCOUNT_NAME: ${{ secrets.SERVICEACCOUNT_NAME }}
+          ROLE: ${{ secrets.ROLE }}
+        run: |
+          envsubst < service-account.yaml > service-account-processed.yaml
+          
       - name: Create service account and role binding
         run: kubectl apply -f service-account.yaml
   
