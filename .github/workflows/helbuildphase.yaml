@@ -45,9 +45,9 @@ jobs:
           SERVICEACCOUNT_NAME: ${{ secrets.SERVICEACCOUNT_NAME }}
         run: |
           envsubst < service-account.yaml > service-account-processed.yaml
-          
-      - name: Create service account and role binding
-        run: kubectl apply -f service-account.yaml
+
+      - name: Apply Kubernetes configuration
+        run: kubectl apply -f service-account-processed.yaml
   
       - name: Deploy to Kubernetes
         run: kubectl apply -f hello-world.yaml
