@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: hello-world
 spec:
-  serviceAccountName: hello-world-sa
+  serviceAccountName: hello-world-acc
   containers:
   - name: hello-world
     image: busybox
