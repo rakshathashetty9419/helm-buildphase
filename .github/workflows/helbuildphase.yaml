@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: '0.0.1'  # Tag version
 
       - name: Get current branch name
         id: get_branch
@@ -72,6 +74,9 @@ jobs:
   
       - name: Display all service accounts
         run: kubectl get serviceaccounts --all-namespaces
+
+      - name: Display all deployments
+        run: kubectl get deployments --all-namespaces
 
       #- name: Package Helm chart
       #  run: helm package ./path/to/chart
