@@ -1,6 +1,25 @@
 name: Helm CI Workflow
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment to deploy to'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - production
+      database_needed:
+        description: 'Is a database needed?'
+        required: true
+        type: choice
+        options:
+          - yes
+          - no
 
 env:
   # Setting an environment variable with the value of a configuration variable
@@ -100,4 +119,3 @@ jobs:
      #     HELM_VALUES: ${{ secrets.HELM_VALUES }}
      #   run: |
      #     helm upgrade --install $HELM_RELEASE $HELM_CHART --namespace $HELM_NAMESPACE --values $HELM_VALUES
-
